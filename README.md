@@ -11,7 +11,7 @@ This is my personal Docker compose recipe for my Odoo development environment.
 
 ## Cooking
 
-1. Prepare directories to store the Odoo data, and PostgreSQL data
+1. Prepare directories to store the Odoo data and PostgreSQL data
    ```
    mkdir -p ./var/lib/odoo && mkdir -p ./var/lib/postgresql/data/pgdata
    ```
