@@ -57,11 +57,13 @@ to taking down all the Odoo container things.
 
 **Don't worry about your data.** It safe on `var/lib/odoo/.local/` and `var/lib/postgresql/data/pgdata/`.
 
-And if you want to get Odoo again, just run 
+And if you want to get Odoo again, just run
 
 ```
 docker compose up -d
 ```
+
+And you get your data back.
 
 That's it!
 
