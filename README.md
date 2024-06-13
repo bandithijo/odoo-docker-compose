@@ -11,7 +11,8 @@ This is my personal Docker compose recipe for my Odoo development environment.
 
 ## Cooking
 
-1. Prepare directories to store the Odoo data and PostgreSQL data
+1. Please provide directories to store the Odoo data and PostgreSQL data
+
    ```
    mkdir -p ./var/lib/odoo && mkdir -p ./var/lib/postgresql/data/pgdata
    ```
@@ -33,9 +34,11 @@ This is my personal Docker compose recipe for my Odoo development environment.
    ```
    docker exec -u root odoo chown odoo:odoo -R /var/lib/odoo
    ```
+
    \* Above command only run once on the first time. Next compose up, you don't need to run this command again.
 
 1. Open your browser and access Odoo
+
    ```
    http://localhost:8069
    ```
@@ -49,7 +52,10 @@ If you have done playing with Odoo, just run
 ```
 docker compose down
 ```
+
 to taking down all the Odoo container things.
+
+**Don't worry about your data.** It safe on `var/lib/odoo/.local/` and `var/lib/postgresql/data/pgdata/`.
 
 And if you want to get Odoo again, just run 
 
