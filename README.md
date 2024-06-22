@@ -5,8 +5,24 @@ This is my personal Docker compose recipe for my Odoo development environment.
 
 ## Rules
 
+1. Easy to start, stop, and restart the Odoo service.
 1. Odoo data and PostgreSQL data should lay down on the host, not in the Docker volume. This ensures that I don't need to worry about the data.
 1. It should be possible to doing Docker compose up and down in a robust and flexible manner.
+
+
+## Directory structure
+
+```
+ addons/                       # Custom modules goes here
+└  sample_custom_module/
+ etc/
+└  odoo/
+  └  odoo.conf                 # Odoo configuration file
+ var/
+└  lib/
+  │  odoo/                     # Odoo data directories
+  └  postgresql/               # PostgreSQL data directories
+```
 
 
 ## Cooking
@@ -65,14 +81,68 @@ docker compose up -d
 
 And you get your data back.
 
+
+## Restart
+
+If you want to restart Odoo service, just run
+
+```
+docker compose restart
+```
+
+
+## Logging
+
+If you want to check log for odoo container, just run
+
+```
+docker compose logs -f odoo
+```
+
+If you want to check log for odoo-postgres, just run
+
+```
+docker compose logs -f odoo-postgres
+```
+
+
+## Make it easy with Makefile
+
+I have provide `Makefile` to control all my needs:
+
+1. Easy to start, stop, and restart Odoo service
+1. Easy to check the Odoo and PostgreSQL log for debugging
+1. Easy to enter PostgreSQL interactive shell (psql)
+
+```
+make
+```
+
+```
+Available targets:
+  start                  Start the compose with daemon
+  stop                   Stop the compose
+  restart                Restart the compose
+  psql                   PostgreSQL interactive shell
+  logs odoo              Logs the odoo container
+  logs db                Logs the odoo-postgres container
+```
+
+So, I don't need to use the long docker compose command anymore.
+
+Just run `make start` to compose up, `make stop` to compose down, `make restart` to compose restart and so on.
+
 That's it!
+
+> **ATTENTION PLEASE** \
+> Store your Odoo database name into `WEB_DB_NAME=` variable inside `Makefile`, before execute the command `make psql`.
 
 
 ## Documentations
 
 1. Odoo tutorials \
    <https://www.odoo.com/slides/all/tag/odoo-tutorials-9>
-1. Define modue data \
-   <https://www.odoo.com/documentation/17.0/developer/tutorials/define_module_data.html>
-1. Coding guidelines (Module structure, XML files, Python, JavaScript, CSS, and SCSS) \
+1. Developer > Tutorials > Server framework 101 \
+   <https://www.odoo.com/documentation/17.0/developer/tutorials/server_framework_101.html>
+1. Contributing > Development > Coding guidelines (Module structure, XML files, Python, JavaScript, CSS, and SCSS) \
    <https://www.odoo.com/documentation/17.0/contributing/development/coding_guidelines.html>

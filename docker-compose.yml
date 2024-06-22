@@ -10,10 +10,10 @@ services:
         ports:
             - 8069:8069
         depends_on:
-            - postgres
+            - odoo-postgres
         networks:
             - odoo-network
-    postgres:
+    odoo-postgres:
         container_name: odoo-postgres
         image: postgres:16.1
         env_file: .env
