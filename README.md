@@ -3,6 +3,12 @@
 This is my personal Docker compose recipe for my Odoo development environment.
 
 
+## Docker images
+
+1. `odoo:17.0`
+1. `postgresql:16.1`
+
+
 ## Rules
 
 1. Easy to start, stop, and restart the Odoo service.
@@ -51,7 +57,8 @@ This is my personal Docker compose recipe for my Odoo development environment.
    docker exec -u root odoo chown odoo:odoo -R /var/lib/odoo
    ```
 
-   \* Above command only run once on the first time. Next compose up, you don't need to run this command again.
+   > **NOTE** \
+   > Above command only run once on the first time. Next compose up, you don't need to run this command again.
 
 1. Open your browser and access Odoo
 
@@ -73,13 +80,13 @@ to taking down all the Odoo container things.
 
 **Don't worry about your data.** It safe on `var/lib/odoo/.local/` and `var/lib/postgresql/data/pgdata/`.
 
-And if you want to get Odoo again, just run
+And if you want to get into Odoo again, just run
 
 ```
 docker compose up -d
 ```
 
-And you get your data back.
+And you will get your data back.
 
 
 ## Restart
@@ -128,7 +135,7 @@ Available targets:
   logs db                Logs the odoo-postgres container
 ```
 
-So, I don't need to use the long docker compose command anymore.
+So, you don't need to use the long docker compose command anymore.
 
 Just run `make start` to compose up, `make stop` to compose down, `make restart` to compose restart and so on.
 
