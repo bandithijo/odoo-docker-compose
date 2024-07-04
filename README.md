@@ -19,8 +19,8 @@ This is my personal Docker compose recipe for my Odoo development environment.
 ## Directory structure
 
 ```
- addons/                       # Custom modules goes here
-└  sample_custom_module/
+ extra-addons/                 # Custom modules goes here
+└  sample_module/
  etc/
 └  odoo/
   └  odoo.conf                 # Odoo configuration file
@@ -130,6 +130,8 @@ Available targets:
   start                  Start the compose with daemon
   stop                   Stop the compose
   restart                Restart the compose
+  addons <addon_names>   Restart instance and upgrade addons (comma-separated)
+  console                Odoo interactive console
   psql                   PostgreSQL interactive shell
   logs odoo              Logs the odoo container
   logs db                Logs the odoo-postgres container
@@ -138,6 +140,10 @@ Available targets:
 So, you don't need to use the long docker compose command anymore.
 
 Just run `make start` to compose up, `make stop` to compose down, `make restart` to compose restart and so on.
+
+If you want to upgrade single custom module `make upgrade module_name`.
+
+If you want to upgrade multiple custom modules `make upgrade module_name,module_name,module_name`.
 
 That's it!
 
